@@ -1,89 +1,225 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Esküvői Videózás – Modern & Letisztult</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imation Wedding - Esküvő Videós</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Alap stílusok */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #f9f9f9; color: #333; line-height: 1.6; }
+
+        /* Menüsor */
+        header {
+            background: #b88c52; /* elegáns barna/arany árnyalat */
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 { font-weight: 700; color: #fff; }
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover { color: #fdf6f0; }
+
+        section { padding: 80px 50px; background-color: #fdf6f0; border-top: 1px solid #e8e2da; border-bottom: 1px solid #e8e2da; }
+        section:nth-child(even) { background-color: #f9f3eb; }
+
+        /* Hero section absztrakt mintával */
+        #home {
+            position: relative;
+            background-color: #fdf6f0;
+            background-image: radial-gradient(circle, rgba(184,140,82,0.05) 1px, transparent 1px),
+                              radial-gradient(circle, rgba(184,140,82,0.05) 1px, transparent 1px);
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #333;
+        }
+        #home::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255,255,255,0.25);
+        }
+        #home h2, #home p { position: relative; z-index: 1; }
+        #home h2 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; }
+        #home p { font-size: 1.3rem; max-width: 650px; }
+        .hero-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background-color: #b88c52;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-btn:hover { background-color: #a37336; transform: translateY(-2px); }
+
+        /* Portfólió */
+        #portfolio .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+        .video-wrapper.visible { opacity: 1; transform: translateY(0); }
+        .youtube-video, .video-wrapper video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 8px;
+        }
+
+        /* Kapcsolat */
+        #contact form { max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 15px; }
+        #contact input, #contact textarea { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+        #contact button {
+            padding: 12px;
+            border: none;
+            background-color: #b88c52;
+            color: white;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #contact button:hover { background-color: #a37336; }
+
+        /* Árlista */
+        #pricing .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        #pricing .card:hover { transform: translateY(-5px); }
+        #pricing .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+
+        footer { background: #333; color: #fff; text-align: center; padding: 20px; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            #home h2 { font-size: 2.2rem; }
+            #home p { font-size: 1.1rem; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigáció -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">Esküvői Filmek</div>
-      <ul class="nav-links">
-        <li><a href="#home">Főoldal</a></li>
-        <li><a href="#about">Rólam</a></li>
-        <li><a href="#portfolio">Portfólió</a></li>
-        <li><a href="#pricing">Árak</a></li>
-        <li><a href="#contact">Kapcsolat</a></li>
-      </ul>
+
+<header>
+    <h1>Imation Wedding</h1>
+    <nav>
+        <ul>
+            <li><a href="#home">Főoldal</a></li>
+            <li><a href="#portfolio">Portfólió</a></li>
+            <li><a href="#pricing">Árak</a></li>
+            <li><a href="#contact">Kapcsolat</a></li>
+            <li><a href="#aszf">ÁSZF</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="hero-text">
-      <h1>Esküvői videók, amik örökre megmaradnak</h1>
-      <p>Elegancia, érzelmek, pillanatok – profi minőségben.</p>
-      <a href="#portfolio" class="btn">Nézd meg a munkáimat</a>
-    </div>
-  </section>
+<section id="home">
+    <h2>Örökítsd meg a nagy napod</h2>
+    <p>Imation Wedding - Professzionális esküvői videók, hogy a pillanatok örökre megmaradjanak.</p>
+    <a href="#portfolio" class="hero-btn">Nézd meg a portfóliót</a>
+</section>
 
-  <!-- Rólam -->
-  <section id="about" class="about">
-    <div class="about-content">
-      <img src="assets/about.jpg" alt="Rólam">
-      <div>
-        <h2>Rólam</h2>
-        <p>Szenvedélyem az esküvők megörökítése. Minden filmem célja, hogy
-           visszaadja a nap varázsát és megőrizze a legszebb pillanatokat.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfólió -->
-  <section id="portfolio" class="portfolio">
+<section id="portfolio">
     <h2>Portfólió</h2>
-    <div class="video-grid">
-      <div class="video-item">
-        <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" frameborder="0"
-        allowfullscreen></iframe>
-      </div>
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/76979871" frameborder="0"
-        allowfullscreen></iframe>
-      </div>
+    <div class="grid">
+        <!-- YouTube videó -->
+        <div class="video-wrapper fade-in">
+            <iframe class="youtube-video" src="https://www.youtube.com/embed/gKecO96tqos" 
+                title="YouTube video" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        </div>
+        <!-- Helyi videó -->
+        <div class="video-wrapper fade-in">
+            <video controls>
+                <source src="video2.mp4" type="video/mp4">
+                A böngésző nem támogatja a videót.
+            </video>
+        </div>
+        <!-- YouTube videó -->
+        <div class="video-wrapper fade-in">
+            <iframe class="youtube-video" src="https://www.youtube.com/embed/VIDEO_ID" 
+                title="YouTube video" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        </div>
+        <!-- Helyi videó -->
+        <div class="video-wrapper fade-in">
+            <video controls>
+                <source src="video4.mp4" type="video/mp4">
+                A böngésző nem támogatja a videót.
+            </video>
+        </div>
     </div>
-  </section>
+</section>
 
-  <!-- Árak -->
-  <section id="pricing" class="pricing">
-    <h2>Árak & Csomagok</h2>
-    <div class="pricing-grid">
-      <div class="card">
-        <h3>Alap</h3>
-        <p>4 órás forgatás</p>
-        <p><strong>120.000 Ft</strong></p>
-      </div>
-      <div class="card">
-        <h3>Standard</h3>
-        <p>8 órás forgatás + highlight film</p>
-        <p><strong>220.000 Ft</strong></p>
-      </div>
-      <div class="card">
-        <h3>Prémium</h3>
-        <p>Egész napos forgatás + drón felvételek</p>
-        <p><strong>350.000 Ft</strong></p>
-      </div>
+<section id="pricing">
+    <h2>Árak</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Alap csomag</h3>
+            <p>2 óra videózás</p>
+            <p>1 videó vágás</p>
+            <p>Ár: 100 000 Ft</p>
+        </div>
+        <div class="card">
+            <h3>Standard csomag</h3>
+            <p>4 óra videózás</p>
+            <p>1-2 videó vágás</p>
+            <p>Ár: 180 000 Ft</p>
+        </div>
+        <div class="card">
+            <h3>Prémium csomag</h3>
+            <p>Teljes nap videózás</p>
+            <p>Teljes vágott videócsomag</p>
+            <p>Ár: 300 000 Ft</p>
+        </div>
     </div>
-  </section>
+</section>
 
-  <!-- Kapcsolat -->
-<section id="contact" class="contact">
-  <h2>Kapcsolat</h2>
-<form action="https://formspree.io/f/xdklaokj" method="POST">
+<section id="contact">
+    <h2>Kapcsolat</h2>
+    <form action="https://formspree.io/f/xdklaokj" method="POST">
   <input type="text" name="name" placeholder="Név" required>
   <input type="email" name="email" placeholder="Email" required>
   <textarea name="message" placeholder="Üzenet" required></textarea>
@@ -92,30 +228,30 @@
     Az üzenetet sikeresen elküldtük!
   </p>
 </form>
-
-<script>
-  const form = document.querySelector("form");
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (response.ok) {
-      form.querySelector(".success-message").style.display = "block";
-      form.reset();
-    }
-  });
-</script>
-
 </section>
 
+<section id="aszf">
+    <h2>ÁSZF</h2>
+    <p>Itt jöhet az Általános Szerződési Feltételek szövege...</p>
+</section>
 
-  <footer>
-    <p>© 2025 Esküvői Filmek – Minden jog fenntartva.</p>
-  </footer>
+<footer>
+    <p>&copy; 2025 Imation Wedding. Minden jog fenntartva.</p>
+</footer>
 
-  <script src="script.js"></script>
+<script>
+    // Fade-in animáció
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
