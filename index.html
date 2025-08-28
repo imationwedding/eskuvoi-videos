@@ -2,6 +2,7 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Esküvői Videózás – Modern & Letisztult</title>
   <link rel="stylesheet" href="style.css">
@@ -80,15 +81,36 @@
   </section>
 
   <!-- Kapcsolat -->
-  <section id="contact" class="contact">
-    <h2>Kapcsolat</h2>
-    <form>
-      <input type="text" placeholder="Név" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Üzenet" required></textarea>
-      <button type="submit" class="btn">Küldés</button>
-    </form>
-  </section>
+<section id="contact" class="contact">
+  <h2>Kapcsolat</h2>
+<form action="https://formspree.io/f/xdklaokj" method="POST">
+  <input type="text" name="name" placeholder="Név" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <textarea name="message" placeholder="Üzenet" required></textarea>
+  <button type="submit" class="btn">Küldés</button>
+  <p class="success-message" style="display:none; color:green; margin-top:10px;">
+    Az üzenetet sikeresen elküldtük!
+  </p>
+</form>
+
+<script>
+  const form = document.querySelector("form");
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      form.querySelector(".success-message").style.display = "block";
+      form.reset();
+    }
+  });
+</script>
+
+</section>
+
 
   <footer>
     <p>© 2025 Esküvői Filmek – Minden jog fenntartva.</p>
