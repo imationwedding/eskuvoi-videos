@@ -1,257 +1,557 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imation Wedding - Esküvő Videós</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Alap stílusok */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background-color: #f9f9f9; color: #333; line-height: 1.6; }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Imation wedding – Esküvői videó</title>
+  <meta name="description" content="Imation wedding – elegáns esküvői videózás: portfólió, árak, kapcsolat és GYIK egy oldalon. 4K, drón, kreatív videózás, gyors átadás." />
+  <meta name="theme-color" content="#fffdf8" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Imation wedding – Esküvői videó | Elegáns 4K filmek" />
+  <meta property="og:description" content="Prémium esküvői videózás 4K minőségben, drónnal és kreatív történetmeséléssel." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop" />
+  <meta property="og:site_name" content="Imation wedding" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Imation wedding – Esküvői videó" />
+  <meta name="twitter:description" content="Esküvői filmek elegáns, filmszerű megjelenéssel." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop" />
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23caa43b'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-family='Georgia,serif' font-size='30' fill='%234a3b0f'%3EIW%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fffdf8;           /* meleg, elegáns háttér */
+      --paper: #ffffff;        /* kártyák */
+      --ink: #1f2937;          /* fő szöveg */
+      --muted: #6b7280;        /* kiegészítő szöveg */
+      --gold: #c9a227;         /* arany akcentus */
+      --gold-soft: #e8d7a6;    /* finom arany háttér */
+      --line: #e5e7eb;         /* határvonalak */
+      --shadow: 0 10px 30px rgba(17, 24, 39, .08);
+      --radius: 16px;
+      --container: 1200px;
+    }
 
-        /* Menüsor */
-        header {
-            background: #b88c52; /* elegáns barna/arany árnyalat */
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        header h1 { font-weight: 700; color: #fff; }
-        nav ul { list-style: none; display: flex; gap: 30px; }
-        nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        nav ul li a:hover { color: #fdf6f0; }
+    /* Alapok */
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+    h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; line-height: 1.2; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0; }
+    h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); margin: 0 0 .75rem; }
+    h3 { font-size: 1.25rem; margin: 0 0 .25rem; }
+    p { margin: .5rem 0 1rem; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; border-radius: 12px; }
 
-        section { padding: 80px 50px; background-color: #fdf6f0; border-top: 1px solid #e8e2da; border-bottom: 1px solid #e8e2da; }
-        section:nth-child(even) { background-color: #f9f3eb; }
+    .container { width: min(100% - 2rem, var(--container)); margin-inline: auto; }
+    .section { padding: clamp(3rem, 6vw, 5rem) 0; }
 
-        /* Hero section absztrakt mintával */
-        #home {
-            position: relative;
-            background-color: #fdf6f0;
-            background-image: radial-gradient(circle, rgba(184,140,82,0.05) 1px, transparent 1px),
-                              radial-gradient(circle, rgba(184,140,82,0.05) 1px, transparent 1px);
-            background-position: 0 0, 25px 25px;
-            background-size: 50px 50px;
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #333;
-        }
-        #home::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(255,255,255,0.25);
-        }
-        #home h2, #home p { position: relative; z-index: 1; }
-        #home h2 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; letter-spacing: 1px; }
-        #home p { font-size: 1.3rem; max-width: 650px; }
-        .hero-btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: white;
-            background-color: #b88c52;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s, transform 0.3s;
-            position: relative;
-            z-index: 1;
-        }
-        .hero-btn:hover { background-color: #a37336; transform: translateY(-2px); }
+    /* Navigáció */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 253, 248, .75);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 64px; }
+    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; letter-spacing: .3px; }
+    .brand .logo { width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f2e6b6, #caa43b 60%, #8a6d1f); box-shadow: inset 0 0 0 2px rgba(255,255,255,.25); }
+    .brand span { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }
 
-        /* Portfólió */
-        #portfolio .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-        }
-        .video-wrapper.visible { opacity: 1; transform: translateY(0); }
-        .youtube-video, .video-wrapper video {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border-radius: 8px;
-        }
+    .menu { display: flex; gap: 1.2rem; align-items: center; }
+    .menu a { padding: .4rem .6rem; border-radius: 10px; font-weight: 500; color: var(--muted); }
+    .menu a:hover, .menu a.active { color: var(--ink); background: var(--gold-soft); }
 
-        /* Kapcsolat */
-        #contact form { max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 15px; }
-        #contact input, #contact textarea { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
-        #contact button {
-            padding: 12px;
-            border: none;
-            background-color: #b88c52;
-            color: white;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #contact button:hover { background-color: #a37336; }
+    .hamb { display: none; border: 1px solid var(--line); background: var(--paper); padding: .5rem .7rem; border-radius: 12px; }
+    .hamb svg { width: 22px; height: 22px; }
 
-        /* Árlista */
-        #pricing .card {
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        #pricing .card:hover { transform: translateY(-5px); }
-        #pricing .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    @media (max-width: 900px) {
+      .menu { position: fixed; inset: 64px 0 auto 0; height: 0; overflow: hidden; flex-direction: column; align-items: stretch; background: rgba(255,253,248,.97); border-bottom: 1px solid var(--line); transition: height .3s ease; }
+      .menu.open { height: 260px; padding: .75rem 1rem; }
+      .hamb { display: inline-flex; }
+    }
 
-        footer { background: #333; color: #fff; text-align: center; padding: 20px; }
+    /* Hero */
+    .byline { font-family:"Alex Brush", cursive; font-size: clamp(1.8rem, 4vw, 2.6rem); color: #4a3b0f; margin-top: .35rem; }
+    .hero { padding: clamp(4rem, 10vw, 7rem) 0 clamp(3rem, 7vw, 5rem); }
+    .hero-grid { display: grid; gap: 2rem; grid-template-columns: 1.2fr .8fr; align-items: center; }
+    .overline { display: inline-flex; align-items: center; gap: .5rem; color: var(--muted); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; }
+    .overline .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(201,162,39,.18); }
+    .lead { font-size: clamp(1rem, 1.6vw, 1.125rem); color: var(--muted); max-width: 60ch; }
+    .cta-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1rem; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.1rem; border-radius: 14px; border: 1px solid var(--line); background: var(--paper); font-weight: 600; }
+    .btn.primary { background: linear-gradient(180deg, #f7e7b5, #e2c060); border-color: #cfac47; }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+    .hero-media { position: relative; }
+    .hero-media::before { content: ""; position: absolute; inset: -8%; background: radial-gradient(60% 60% at 30% 30%, rgba(201,162,39,.20), transparent 60%); filter: blur(30px); }
+    .frame { position: relative; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
+    .frame video, .frame img { display:block; width:100%; height:auto; }
 
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; }
-            #home h2 { font-size: 2.2rem; }
-            #home p { font-size: 1.1rem; }
-        }
-    </style>
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+
+    /* Rólam */
+    .about { display: grid; gap: 2rem; grid-template-columns: .9fr 1.1fr; align-items: center; }
+    .about .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow); }
+    .about .list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .badge { display:inline-flex; align-items:center; gap:.4rem; padding:.45rem .7rem; border:1px solid var(--line); border-radius:999px; background:var(--paper); font-weight:600; font-size:.9rem; }
+    .badge .sparkle { width:16px; height:16px; }
+    @media (max-width: 900px) { .about { grid-template-columns: 1fr; } .about .list{grid-template-columns:1fr;} }
+
+    /* Portfólió */
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(12, 1fr); }
+    .grid .col-4 { grid-column: span 4; }
+    .grid .col-6 { grid-column: span 6; }
+    .grid .col-8 { grid-column: span 8; }
+    .grid .col-12 { grid-column: span 12; }
+    @media (max-width: 900px) { .grid .col-4, .grid .col-6, .grid .col-8 { grid-column: span 12; } }
+    .portfolio .item { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); background: #f8f8f8; }
+    .portfolio .item:hover img { transform: scale(1.04); }
+    .portfolio .item img { transition: transform .6s ease; }
+    .play {
+      position: absolute; inset: auto auto 12px 12px; display:inline-flex; align-items:center; gap:.5rem; 
+      background: rgba(255,255,255,.9); padding:.4rem .6rem; border-radius: 999px; border:1px solid var(--line); font-weight:600; font-size:.9rem;
+    }
+
+    /* Árak */
+    .pricing { display: grid; gap: 1.2rem; grid-template-columns: repeat(2, 1fr); align-items: stretch; }
+    .price-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow); display:flex; flex-direction:column; }
+    .price-card .header { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.5rem; }
+    .ribbon { font-weight:700; color:#5b4a12; background: linear-gradient(180deg,#f7e7b5,#e2c060); padding:.35rem .6rem; border-radius:999px; border:1px solid #cfac47; }
+    .features { list-style:none; padding:0; margin: .5rem 0 1rem; display:grid; gap:.55rem; }
+    .features li { display:flex; align-items:flex-start; gap:.55rem; }
+    .features svg { flex:0 0 auto; margin-top:.15rem; }
+    .price { font-size: 1.35rem; font-weight: 800; display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+    .price .old { text-decoration: line-through; color: inherit; font-weight: 700; }
+    .price .now { font-weight: 900; font-size: 1.6rem; color: #d01919; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; text-decoration: none; }
+    .who { background: #fff9e6; border: 1px dashed #efd68f; padding: .7rem .8rem; border-radius: 12px; color: #745b12; }
+    @media (max-width: 900px) { .pricing { grid-template-columns: 1fr; } }
+
+    /* Kapcsolat */
+    .contact { display:grid; grid-template-columns:1.1fr .9fr; gap:1.5rem; align-items:start; }
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow); }
+    form { display:grid; gap:.8rem; }
+    .field { display:grid; gap:.35rem; }
+    .field input, .field textarea { padding:.8rem 1rem; border-radius:12px; border:1px solid var(--line); background:#fff; font:inherit; }
+    .field textarea { min-height: 120px; }
+    .help { color: var(--muted); font-size: .9rem; }
+    @media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
+
+    /* GYIK */
+    details { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: .9rem 1rem; }
+    details + details { margin-top: .7rem; }
+    summary { cursor: pointer; font-weight: 700; }
+    summary::marker { color: var(--gold); }
+
+    /* Lábjegyzet */
+    footer { padding: 2rem 0; color: var(--muted); border-top:1px solid var(--line); }
+    .top { position: fixed; right: 16px; bottom: 16px; border-radius: 999px; width: 44px; height: 44px; display:grid; place-items:center; border:1px solid var(--line); background: var(--paper); box-shadow: var(--shadow); }
+
+    /* Animációk */
+    .reveal { opacity: 0; transform: translateY(12px); transition: .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  /* Finomhangolások */
+    section[id]{ scroll-margin-top: 84px; }
+    .btn{ cursor: pointer; }
+    :focus-visible{ outline: 2px solid var(--gold); outline-offset: 2px; }
+    .top{ opacity:0; pointer-events:none; transform: translateY(8px); transition: .3s ease; }
+    .top.show{ opacity:1; pointer-events:auto; transform:none; }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; }
+      html{ scroll-behavior: auto; }
+    }
+  .discount { color: var(--muted); font-size: .95rem; font-style: italic; }
+  /* Profilkép & aláírás */
+    .profile-card h3{margin-top:0;}
+    .profile{display:flex; align-items:center; gap:1rem; flex-wrap:wrap;}
+    .avatar-wrap{width:140px; height:140px; border-radius:50%; overflow:hidden; border:1px solid var(--line); background:#f6f6f6; display:grid; place-items:center;}
+    #avatar-preview{width:100%; height:100%; object-fit:cover; display:none;}
+    .avatar-ph{display:grid; place-items:center; width:100%; height:100%;}
+    .avatar-ph svg{width:48px; height:48px; color:#9ca3af;}
+    .signature{font-family:"Alex Brush", cursive; font-size:2.4rem; line-height:1; margin-top:.25rem; letter-spacing:.2px;}
+    .profile-controls .btn{margin-right:.5rem;}
+    @media (max-width: 480px){ .avatar-wrap{width:120px; height:120px;} .signature{font-size:2rem;} }
+  .profile.column{flex-direction:column; align-items:center;}
+  </style>
 </head>
 <body>
-
-<header>
-    <h1>Imation Wedding</h1>
-    <nav>
-        <ul>
-            <li><a href="#home">Főoldal</a></li>
-            <li><a href="#portfolio">Portfólió</a></li>
-            <li><a href="#pricing">Árak</a></li>
-            <li><a href="#contact">Kapcsolat</a></li>
-            <li><a href="#aszf">ÁSZF</a></li>
-        </ul>
-    </nav>
-</header>
-
-<section id="home">
-    <h2>Örökítsd meg a nagy napod</h2>
-    <p>Imation Wedding - Professzionális esküvői videók, hogy a pillanatok örökre megmaradjanak.</p>
-    <a href="#portfolio" class="hero-btn">Nézd meg a portfóliót</a>
-</section>
-
-<section id="portfolio">
-    <h2>Portfólió</h2>
-    <div class="grid">
-        <!-- YouTube videó -->
-        <div class="video-wrapper fade-in">
-            <iframe class="youtube-video" src="https://www.youtube.com/embed/gKecO96tqos" 
-                title="YouTube video" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
-        </div>
-        <!-- Helyi videó -->
-        <div class="video-wrapper fade-in">
-            <video controls>
-                <source src="video2.mp4" type="video/mp4">
-                A böngésző nem támogatja a videót.
-            </video>
-        </div>
-        <!-- YouTube videó -->
-        <div class="video-wrapper fade-in">
-            <iframe class="youtube-video" src="https://www.youtube.com/embed/VIDEO_ID" 
-                title="YouTube video" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
-        </div>
-        <!-- Helyi videó -->
-        <div class="video-wrapper fade-in">
-            <video controls>
-                <source src="video4.mp4" type="video/mp4">
-                A böngésző nem támogatja a videót.
-            </video>
-        </div>
+  <!-- Navigáció -->
+  <nav class="nav" aria-label="Fő navigáció">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand" aria-label="Imation wedding kezdőlap">
+        <span>Imation wedding</span>
+      </a>
+      <button class="hamb" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div id="menu" class="menu">
+        <a href="#rolam">Rólam</a>
+        <a href="#portfolio">Portfólió</a>
+        <a href="#arak">Árak</a>
+        <a href="#kapcsolat">Kapcsolat</a>
+        <a href="#gyik">GYIK</a>
+      </div>
     </div>
-</section>
+  </nav>
 
-<section id="pricing">
-    <h2>Árak</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Alap csomag</h3>
-            <p>2 óra videózás</p>
-            <p>1 videó vágás</p>
-            <p>Ár: 100 000 Ft</p>
+  <!-- Hero -->
+  <header id="hero" class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <h1>Imation wedding – <br/>örök emlékek mozgóképen</h1>
+        <p class="lead">Prémium esküvői videózás 4K minőségben, drónnal és kreatív történetmeséléssel. Professzionális hang és kép – hogy az élmény évtizedek múlva is ugyanúgy hasson.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#arak" aria-label="Ugrás az árakhoz">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Árcsomagok
+          </a>
+          <a class="btn" href="#kapcsolat" aria-label="Ugrás a kapcsolat szakaszhoz">Kérj ajánlatot</a>
         </div>
-        <div class="card">
-            <h3>Standard csomag</h3>
-            <p>4 óra videózás</p>
-            <p>1-2 videó vágás</p>
-            <p>Ár: 180 000 Ft</p>
+      </div>
+      <div class="hero-media reveal" aria-hidden="true">
+        <div class="frame">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Esküvői pár naplementében, filmkocka hangulat" loading="lazy" />
         </div>
-        <div class="card">
-            <h3>Prémium csomag</h3>
-            <p>Teljes nap videózás</p>
-            <p>Teljes vágott videócsomag</p>
-            <p>Ár: 300 000 Ft</p>
-        </div>
+      </div>
     </div>
-</section>
+  </header>
 
-<section id="contact">
-    <h2>Kapcsolat</h2>
-    <form action="https://formspree.io/f/xdklaokj" method="POST">
-  <input type="text" name="name" placeholder="Név" required>
-  <input type="email" name="email" placeholder="Email" required>
-  <textarea name="message" placeholder="Üzenet" required></textarea>
-  <button type="submit" class="btn">Küldés</button>
-  <p class="success-message" style="display:none; color:green; margin-top:10px;">
-    Az üzenetet sikeresen elküldtük!
-  </p>
-</form>
-</section>
+  <!-- Rólam -->
+  <section id="rolam" class="section">
+    <div class="container about">
+      <div class="reveal">
+        <h2>Rólam</h2>
+        <p>Néhány évvel ezelőtt kaptam az első felkérésemet egy esküvőre – és azóta tudom, hogy számomra ez sokkal több, mint munka. Fantasztikus érzés látni és megörökíteni az őszinte pillanatokat: egy mosolyt, egy meghatódott tekintetet, egy önfeledt nevetést. Ezek azok a részletek, amik igazán felejthetetlenné tesznek egy napot.
 
-<section id="aszf">
-    <h2>ÁSZF</h2>
-    <p>Itt jöhet az Általános Szerződési Feltételek szövege...</p>
-</section>
+Az esküvői film számomra nem csak dokumentáció, hanem történetmesélés: a ti történeteteké. Ezért mindig arra törekszem, hogy ne csak gyönyörű felvételek készüljenek, hanem olyan film, amit évek múlva is ugyanazzal az örömmel és meghatottsággal néztek vissza.
 
-<footer>
-    <p>&copy; 2025 Imation Wedding. Minden jog fenntartva.</p>
-</footer>
+Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor és a jókedv felszabadít, és segít abban, hogy a kamera előtt is önmagatok lehessetek. Bízom benne, hogy hamar megtaláljuk a közös hangot, és együtt valami igazán különlegeset hozunk létre!</p>
+        <div class="badge" aria-label="Prémium minőség jelvény">
+          <svg class="sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.8L19 9.6l-4.2 2.1L12 17l-2.8-5.3L5 9.6l5.2-1.8L12 3z"/></svg>
+          Prémium minőség &amp; történetmesélés
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="list">
+            <div>
+              <h3>Stílus</h3>
+              <p>Természetes színek, finom fények, filmszerű vágás. A cél: ti legyetek a történet főszereplői.</p>
+            </div>
+            <div>
+              <h3>Technika</h3>
+              <p>4K kamera-rendszer, drón, mikroportok – stabil, tiszta kép és hang, minden körülmények között.</p>
+            </div>
+          </div>
+          <hr class="sep" style="border:none;border-top:1px solid var(--line);margin:1rem 0;" />
+          <div class="profile column" aria-label="Profilkép és aláírás">
+            <div class="avatar-wrap">
+              <img src="assets/patrovics-gabor.jpg" alt="Pátrovics Gábor portré" id="avatar-fixed" />
+            </div>
+            <div class="signature">Pátrovics Gábor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-    // Fade-in animáció
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-    fadeElements.forEach(el => observer.observe(el));
-</script>
+  <!-- Portfólió -->
+  <section id="portfolio" class="section portfolio">
+    <div class="container">
+      <div class="reveal">
+        <h2>Portfólió</h2>
+        <p class="lead">Válogatás korábbi munkáimból. A képek illusztrációk – kérésre privát linkeken teljes filmeket is küldök.</p>
+      </div>
+      <div class="grid" aria-label="Portfólió galéria">
+        <a class="item col-8 reveal" href="#" aria-label="Highlight film példa">
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1600&auto=format&fit=crop" alt="Kreatív páros fotózás" loading="lazy" />
+          <span class="play">Nézd meg</span>
+        </a>
+        <a class="item col-4 reveal" href="#">
+          <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200&auto=format&fit=crop" alt="Gyűrűk és részletek" loading="lazy" />
+          <span class="play">Részletek</span>
+        </a>
+        <a class="item col-6 reveal" href="#">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Szertartás pillanata" loading="lazy" />
+          <span class="play">Szertartás</span>
+        </a>
+        <a class="item col-6 reveal" href="#">
+          <img src="https://images.unsplash.com/photo-1528838068211-87a5645693ec?q=80&w=1600&auto=format&fit=crop" alt="Nyitótánc és buli" loading="lazy" />
+          <span class="play">Nyitótánc</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
+  <!-- Árak -->
+  <section id="arak" class="section">
+    <div class="container">
+      <div class="reveal">
+        <h2>Árak</h2>
+        <p class="lead">Két átgondolt csomag, hogy biztosan megtaláljátok, ami hozzátok illik.</p>
+      </div>
+
+      <div class="pricing">
+        <!-- Klasszikus csomag -->
+        <article class="price-card reveal" aria-labelledby="klasszikus">
+          <div class="header">
+            <h3 id="klasszikus">1. Klasszikus csomag</h3>
+            
+          </div>
+          <p>A profi alapcsomag, amely megörökíti a nap legfontosabb pillanatait elegáns, minőségi formában.</p>
+          <h4>Tartalom:</h4>
+          <ul class="features" aria-label="Klasszikus csomag tartalma">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Egész napos rendelkezésre állás (hajnal 1-ig)
+            </li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 5–10 perces Highlight film</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Szertartás és nyitótánc felvétele 2 kamerával</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 4K videófelvétel</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Drónos felvételek a látványos pillanatokért</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Kreatív videózás az esküvő napján és külön napon</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Mikroportos hangfelvétel a tiszta hangért</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Videó átadása felhőtárhelyen, letölthető formában</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Biztonsági mentés 12 hónapig</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Budapesten belül ingyenes kiszállás</li>
+          </ul>
+          <p class="price" aria-label="Ár"><span class="old" aria-label="Eredeti ár">189.990 Ft</span> <span class="now" aria-label="Akciós ár">99.990 Ft</span></p>
+<p class="discount">Bevezető ár 2025-ben – portfólióépítő időszak miatt kiemelt kedvezménnyel.</p>
+          <div class="who">Kinek ajánljuk? Ha szeretnétek profi, látványos videót az egész napról, gyors átadással és minden fontos pillanat megörökítésével.</div>
+          <div class="cta-row" style="margin-top:1rem; margin-bottom:.25rem;">
+            <a class="btn primary" href="#kapcsolat" aria-label="Klasszikus csomag megrendelése">Megrendelem</a>
+          </div>
+        </article>
+
+        <!-- Exkluzív csomag -->
+        <article class="price-card reveal" aria-labelledby="exkluziv">
+          <div class="header">
+            <h3 id="exkluziv">2. Exkluzív csomag</h3>
+            
+          </div>
+          <p>Az igazi teljes élmény, ahol minden részletre figyelünk, és a videózás igazi kreatív élménnyé válik.</p>
+          <h4>Tartalom:</h4>
+          <ul class="features" aria-label="Exkluzív csomag tartalma">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> A Klasszikus csomag minden szolgáltatása</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hosszabb, dokumentációs film (20–25 perc) a Highlight film mellett</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Extra vágások, vendéginterjúk és egyedi részletek beépítése</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Gyorsított videóátadás (2-4 hét)</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Elegáns pendrive/díszdobozos átadás</li>
+          </ul>
+          <div class="who">Kinek ajánljuk? Ha szeretnétek minden pillanatot látványosan és személyre szabottan megörökíteni, extra hosszú dokumentációval, vendégüzenetekkel és exkluzív átadási formával.</div>
+          <p class="price" aria-label="Ár"><span class="old" aria-label="Eredeti ár">239.990 Ft</span> <span class="now" aria-label="Akciós ár">159.990 Ft</span></p>
+<p class="discount">Bevezető ár 2025-ben – portfólióépítő időszak miatt kiemelt kedvezménnyel.</p>
+          <div class="cta-row" style="margin-top:.5rem;">
+            <a class="btn primary" href="#kapcsolat" aria-label="Exkluzív csomag megrendelése">Megrendelem</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kapcsolat -->
+  <section id="kapcsolat" class="section">
+    <div class="container contact">
+      <div class="reveal card">
+        <h2>Kapcsolat</h2>
+        <p class="lead">Írjatok pár sort a tervekről, dátumról és helyszínről – 24 órán belül válaszolok.</p>
+        <form id="contact-form" name="kapcsolat" action="https://formspree.io/f/xanpyzba" method="POST" accept-charset="utf-8">
+          <div class="field">
+            <label for="nev">Név</label>
+            <input id="nev" name="nev" type="text" placeholder="Teljes név" required />
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" placeholder="nev@pelda.hu" required />
+          </div>
+          <div class="field">
+            <label for="telefon">Telefonszám</label>
+            <input id="telefon" name="telefon" type="tel" placeholder="+36 30 123 4567" />
+          </div>
+          <div class="field">
+            <label for="datum">Esküvő dátuma</label>
+            <input id="datum" name="datum" type="date" />
+          </div>
+          <div class="field">
+            <label for="message">Üzenet</label>
+            <textarea id="message" name="message" placeholder="Pár szó a helyszínről, időpontról és elképzeléseitekről..."></textarea>
+          </div>
+          <div class="cta-row">
+            <button class="btn primary" type="submit">Ajánlatot kérek</button>
+          </div>
+          <div id="form-status" class="help" role="status" aria-live="polite"></div>
+          <noscript><p class="help">Az űrlap elküldése után átirányítunk a Formspree oldalára.</p></noscript>
+        </form>
+      </div>
+      <aside class="reveal card" aria-label="Elérhetőségek">
+        <h3>Elérhetőségek</h3>
+        <p><strong>E-mail:</strong> <a href="mailto:hello@imationwedding.hu">hello@imationwedding.hu</a><br/>
+           <strong>Telefon:</strong> <a href="tel:+36301234567">+36 30 569 2695</a><br/>
+           <strong>Székhely:</strong> Budapest</p>
+        <p class="help">Budapesten belül kiszállás díjmentes. Vidéki és külföldi helyszínek esetén egyedi árazás, utazási költségek megbeszélés szerint.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- GYIK -->
+  <section id="gyik" class="section">
+    <div class="container">
+      <div class="reveal">
+        <h2>GYIK</h2>
+      </div>
+      <div class="reveal" style="max-width:900px; margin-inline:auto;">
+        <details>
+          <summary>Mikor kapjuk meg a kész videókat?</summary>
+          <p>A vágási időszak általában 4-6 hét. Az Exkluzív csomagban gyorsított átadás érhető el (2-4 hét)</p>
+        </details>
+        <details>
+          <summary>Dolgoztok-e ketten a nagy napon?</summary>
+          <p>Jelenleg egyszemélyes hadseregként dolgozok, másodoperatőr igénylésre még nincs lehetőség</p>
+        </details>
+        <details>
+          <summary>Hogyan adjátok át a videókat?</summary>
+          <p>Felhőtárhelyen, letölthető formában. Kérésre pendrive/díszdoboz is elérhető (Exkluzív csomag opció).</p>
+        </details>
+        <details>
+          <summary>Van-e rejtett költség?</summary>
+          <p>Nincs. Vidéki/külföldi helyszín esetén az utazás és szállás költsége külön egyeztetés tárgya.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+      <p>© <span id="year"></span> Imation wedding · Minden jog fenntartva</p>
+      <a class="btn" href="#hero" aria-label="Vissza az oldal tetejére">Vissza a tetejére</a>
+    </div>
+  </footer>
+
+  <a href="#hero" class="top" aria-label="Ugrás a tetejére">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </a>
+
+  <script>
+    // Mobil menü
+    function toggleMenu(){
+      const menu = document.getElementById('menu');
+      const btn = document.querySelector('.hamb');
+      const isOpen = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    }
+    // Zárás linkkattintásra (mobil)
+    document.querySelectorAll('.menu a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        const menu = document.getElementById('menu');
+        if(menu.classList.contains('open')){ toggleMenu(); }
+      })
+    });
+    // ESC zárja a menüt
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ const m=document.getElementById('menu'); if(m.classList.contains('open')) toggleMenu(); }});
+
+    // Aktív menüelem kiemelése
+    const links = Array.from(document.querySelectorAll('.menu a'));
+    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
+        }
+      })
+    }, { rootMargin: '-40% 0% -60% 0%', threshold: 0 });
+    sections.forEach(sec => io.observe(sec));
+
+    // Finom belépő animációk
+    const reveal = document.querySelectorAll('.reveal');
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io2.unobserve(e.target); } });
+    }, { threshold: .15 });
+    reveal.forEach(el => io2.observe(el));
+
+    // Vissza a tetejére gomb megjelenítése
+    const topBtn = document.querySelector('.top');
+    window.addEventListener('scroll', ()=>{
+      const show = window.scrollY > 600;
+      topBtn.classList.toggle('show', show);
+    });
+
+    // Év frissítése láblécben
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Form beküldés – maradjon az oldalon, köszönő üzenettel (AJAX)
+    (function(){
+      const form = document.getElementById('contact-form');
+      if(!form) return;
+      const statusEl = document.getElementById('form-status');
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        if(statusEl) statusEl.textContent = 'Küldés…';
+        try{
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if(res.ok){
+            if(statusEl) statusEl.textContent = 'Köszönöm! Üzeneted megérkezett, hamarosan válaszolok.';
+            form.reset();
+          }else{
+            let msg = 'Hoppá, hiba történt. Kérlek próbáld újra.';
+            try{ const data = await res.json(); if(data && data.errors){ msg = data.errors.map(x=>x.message).join(', '); } }catch(_){}
+            if(statusEl) statusEl.textContent = msg;
+          }
+        }catch(err){ if(statusEl) statusEl.textContent = 'Hálózati hiba. Kérlek próbáld meg később.'; }
+      });
+    })();
+  </script>
+
+  <!-- Struktúrált adatok (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Imation wedding – Esküvői videó",
+    "description": "Esküvői videózás 4K minőségben, drónnal és kreatív történetmeséléssel.",
+    "thumbnailUrl": ["https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop"],
+    "uploadDate": "2025-01-01",
+    "publisher": {"@type": "Organization", "name": "Imation wedding"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Mikor kapjuk meg a kész videókat?",
+        "acceptedAnswer": {"@type": "Answer", "text": "A vágási időszak általában 6–10 hét. Az Exkluzív csomagban gyorsított átadás érhető el (pl. 4 hét), valamint 1 héten belüli teaser videó."}
+      },
+      {
+        "@type": "Question",
+        "name": "Dolgoztok-e ketten a nagy napon?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Az alap csomagban egy fő operatőri jelenlét szerepel, a nagyobb eseményekhez kérhető másodoperatőr is."}
+      },
+      {
+        "@type": "Question",
+        "name": "Hogyan adjátok át a videókat?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Felhőtárhelyen, letölthető formában. Kérésre pendrive/díszdoboz is elérhető (Exkluzív csomag opció)."}
+      },
+      {
+        "@type": "Question",
+        "name": "Van-e rejtett költség?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Nincs. Vidéki/külföldi helyszín esetén az utazás és szállás költsége külön egyeztetés tárgya."}
+      }
+    ]
+  }
+  </script>
 </body>
 </html>
