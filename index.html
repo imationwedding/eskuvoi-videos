@@ -181,6 +181,16 @@
     .profile-controls .btn{margin-right:.5rem;}
     @media (max-width: 480px){ .avatar-wrap{width:120px; height:120px;} .signature{font-size:2rem;} }
   .profile.column{flex-direction:column; align-items:center;}
+  /* Jogi blokk (lábléc) */
+    .legal { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+    .legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+    .legal a:hover { color: var(--ink); }
+    dialog.modal { border:1px solid var(--line); border-radius:14px; padding:0; width:min(680px, 92vw); max-height:90vh; box-shadow: var(--shadow); background: var(--paper); }
+    .modal header { padding:1rem 1.1rem; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; }
+    .modal header h3 { margin:0; font-size:1.2rem; }
+    .modal .content { padding:1rem 1.1rem; max-height:70vh; overflow:auto; }
+    .modal .actions { padding: .8rem 1.1rem; border-top:1px solid var(--line); display:flex; justify-content:flex-end; }
+    .modal .close { border:1px solid var(--line); background:var(--paper); border-radius:12px; padding:.5rem .8rem; font-weight:600; }
   </style>
 </head>
 <body>
@@ -431,8 +441,97 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
   <footer>
     <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
       <p>© <span id="year"></span> Imation wedding · Minden jog fenntartva</p>
+      <nav class="legal" aria-label="Jogi hivatkozások">
+        <a href="#" data-open="impresszum">Impresszum</a>
+        <a href="#" data-open="gdpr">Adatkezelési tájékoztató</a>
+        <a href="#" data-open="aszf">ÁSZF</a>
+      </nav>
       <a class="btn" href="#hero" aria-label="Vissza az oldal tetejére">Vissza a tetejére</a>
     </div>
+
+    <!-- Modális ablakok -->
+    <dialog id="dlg-impresszum" class="modal">
+      <header>
+        <h3>Impresszum</h3>
+        <button class="close" data-close>Bezárás</button>
+      </header>
+      <div class="content">
+        <p><strong>Szolgáltató:</strong> Pátrovics Gábor (egyéni vállalkozó)</p>
+        <p><strong>Kapcsolat:</strong> <a href="mailto:hello@imationwedding.hu">hello@imationwedding.hu</a> · <a href="tel:+36305692695">+36 30 569 2695</a></p>
+        <p><strong>Székhely:</strong> 2440 Százhalombatta, Erkel Ferenc krt 30. 4/3, Magyarország</p>
+        <p><strong>Nyilvántartási szám:</strong> 61085673 · <strong>Adószám:</strong> 91411282133</p>
+        <p><strong>Tárhelyszolgáltató:</strong> <a href="https://www.rackhost.hu/" target="_blank" rel="noopener">https://www.rackhost.hu/</a></p>
+      </div>
+      <div class="actions"><button class="close" data-close>Rendben</button></div>
+    </dialog>
+
+    <dialog id="dlg-gdpr" class="modal">
+      <header>
+        <h3>Adatkezelési tájékoztató</h3>
+        <button class="close" data-close>Bezárás</button>
+      </header>
+      <div class="content">
+        <p>Az űrlapon megadott személyes adatokat (név, e-mail, telefonszám, esküvő dátuma) kizárólag ajánlatadás és kapcsolattartás céljából használom fel.</p>
+        <ul>
+          <li><strong>Adatkezelő:</strong> Imation wedding</li>
+          <li><strong>Jogalap:</strong> GDPR 6. cikk (1) b) – szerződéskötést megelőző lépések</li>
+          <li><strong>Tárolás ideje:</strong> ajánlatadástól számított legfeljebb 12 hónap</li>
+          <li><strong>Adatfeldolgozó:</strong> Formspree (űrlapküldés). Az adatok továbbításra kerülnek az email kézbesítéshez.</li>
+          <li><strong>Jogok:</strong> hozzáférés, helyesbítés, törlés, korlátozás, tiltakozás – kérelem: <a href="mailto:hello@imationwedding.hu">hello@imationwedding.hu</a></li>
+        </ul>
+        <p>Egyedi kérés esetén írj a fenti elérhetőségek egyikére.</p>
+      </div>
+      <div class="actions"><button class="close" data-close>Rendben</button></div>
+    </dialog>
+
+    <dialog id="dlg-aszf" class="modal">
+      <header>
+        <h3>Általános Szerződési Feltételek (ÁSZF)</h3>
+        <button class="close" data-close>Bezárás</button>
+      </header>
+      <div class="content">
+        <p><em>Verzió/dátum: [YYYY.MM.DD]</em></p>
+        <ol>
+          <li><strong>Szolgáltató adatai</strong><br/>
+            Név: Pátrovics Gábor · Székhely/levelezés: 2440 Százhalombatta, Erkel Ferenc krt 30. 4/3 · Nyilvántartási/cégjegyzékszám: 61085673 · Adószám: 91411282133 · E-mail: <a href="mailto:hello@imationwedding.hu">hello@imationwedding.hu</a> · Telefon: <a href="tel:+36305692695">+36 30 569 2695</a> · Tárhely: <a href="https://www.rackhost.hu/" target="_blank" rel="noopener">https://www.rackhost.hu/</a>
+          </li>
+          <li><strong>Fogalmak, hatály</strong><br/>
+            Esküvői fotó és/vagy videó szolgáltatások. Ajánlat: e-mailben küldött részletes szolgáltatás- és díjleírás. Szerződés: az Ajánlat és jelen ÁSZF kifejezett e-mailes elfogadásával jön létre.
+          </li>
+          <li><strong>Szerződéskötés</strong><br/>
+            Elfogadás minta: „Elfogadom az ajánlatot és a [YYYY.MM.DD] dátumú ÁSZF-et.” A Szolgáltató e-mailben visszaigazol.
+          </li>
+          <li><strong>Teljesítés, rendelkezésre állás, átadás</strong><br/>
+            Rendelkezésre állás: 10:00–01:00 (köv. nap). A csomag tartalma az Ajánlatban. Átadás: felhőlink/USB, link érvényesség: 12 hónap. Drón a csomag része, ha a helyszín/időjárás és jogszabály engedi. A szolgáltatás teljesítésére kötelez a szerződés; a Szolgáltató garantálja, hogy az adott időpontban szerződésszerűen teljesít.
+          </li>
+          <li><strong>Díjak, fizetés, foglaló</strong><br/>
+            Árak bruttó HUF. Fizetés: készpénz vagy átutalás (foglaló és végösszeg is). Foglaló: 50.000 Ft – a dátum a foglaló beérkezésével rögzül.
+          </li>
+          <li><strong>Lemondás / elállás / felmondás – foglaló</strong><br/>
+            Megrendelő lemondásakor a foglaló nem jár vissza, a lemondás okától függetlenül. Szolgáltató lemondásakor a foglaló kétszeresét téríti vissza. <em>(Jogi megjegyzés: vis maior esetére a jogszabály eltérő rendelkezéseket írhat elő.)</em>
+          </li>
+          <li><strong>Kiszállás, utazás, ellátás</strong><br/>
+            Budapest közig. határán belül díjmentes kiszállás; azon kívül 110 Ft/km (oda-vissza), parkolás/útdíj külön. A Szolgáltató saját gépjárművel érkezik, kizárólag saját eszközeit és munkatársait szállítja. A Megrendelő az esküvő napján a fotós/videós számára a vendégekkel azonos színvonalú ellátást (étel-ital) biztosít.
+          </li>
+		   <li><strong>Rögzítés jellege, együttműködés</strong><br/>
+            A szolgáltató törekszik minden fontos esemény rögzítésére, de nem felel azért, ha egyes jelenetek részlegesen hiányoznak vagy nem rögzíthetők (pl. szervezési/hozzáférési/emberi tényezők). A Megrendelő együttműködése szükséges (belépés, időzítés, koordináció).
+			</li> <li><strong>Adatvédelem a helyszínen</strong><br/>
+           A Megrendelő vállalja, hogy előzetesen tájékoztatja a vendégeket, hogy az eseményen kép- és hangrögzítés történik.
+		   </li> <li><strong>Anyagok átadása, utómunka, javítás</strong><br/>
+           Utómunka (válogatás, szerkesztés/vágás): max. 4 hét az esküvőt követően. Átadás felhőlinken (12 hónap), igény szerint pendrive-on is. A pendrive 3 hónapon belül gyártási hiba esetén ingyen cserélhető (a hibás eszközt vissza kell juttatni).
+A kész anyag átvételétől számított 1 hónapon belül egyszeri díjmentes javítás kérhető; ezt követően minden további javítás: 40.000 Ft/alkalom.
+</li> <li><strong>Szerzői jog, felhasználás</strong><br/>
+            A kész anyagok szerzői joga a Szolgáltatót illeti. Megrendelő magáncélú, nem kizárólagos, korlátlan felhasználási engedélyt kap; kereskedelmi felhasználás külön engedéllyel és díjjal. Portfólió/közösségi média megjelenítés méltányosan; korlátozás egyedi megállapodással
+			</li>
+			<li><strong>Panasz, jogvita</strong><br/>
+           Panasz: hello@imationwedding.hu
+ (válasz 30 napon belül). Békéltető Testület: székhely szerint illetékes. Irányadó jog: magyar jog, illetékes bíróság a Pp. szerint.</li>
+			<li><strong>Technika, felelősség</strong><br/>
+           Tartalék eszközök és adatmentés mellett a drón üzemeltetése időjárás- és jogszabályfüggő; akadály esetén ez nem hibás teljesítés, külön díj nem számítandó. Felelősség a bizonyított közvetlen kárra és legfeljebb a vállalkozói díj összegére korlátozott. </li>
+        </ol>
+      </div>
+      <div class="actions"><button class="close" data-close>Rendben</button></div>
+    </dialog>
   </footer>
 
   <a href="#hero" class="top" aria-label="Ugrás a tetejére">
@@ -460,33 +559,47 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
     // Aktív menüelem kiemelése
     const links = Array.from(document.querySelectorAll('.menu a'));
     const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    const activeObs = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
         if(entry.isIntersecting){
-          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
+          links.forEach(l=> l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
         }
-      })
-    }, { rootMargin: '-40% 0% -60% 0%', threshold: 0 });
-    sections.forEach(sec => io.observe(sec));
+      });
+    }, { rootMargin: '-50% 0px -40% 0px', threshold: 0.01 });
+    sections.forEach(s=> activeObs.observe(s));
 
-    // Finom belépő animációk
-    const reveal = document.querySelectorAll('.reveal');
-    const io2 = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io2.unobserve(e.target); } });
-    }, { threshold: .15 });
-    reveal.forEach(el => io2.observe(el));
+    // Reveal animáció
+    const reveals = document.querySelectorAll('.reveal');
+    const revObs = new IntersectionObserver((ents)=>{
+      ents.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('visible'); revObs.unobserve(en.target); }});
+    }, { threshold: 0.15 });
+    reveals.forEach(el=> revObs.observe(el));
 
-    // Vissza a tetejére gomb megjelenítése
+    // Vissza a tetejére gomb
     const topBtn = document.querySelector('.top');
-    window.addEventListener('scroll', ()=>{
-      const show = window.scrollY > 600;
-      topBtn.classList.toggle('show', show);
+    window.addEventListener('scroll', ()=>{ topBtn.classList.toggle('show', window.scrollY > 600); });
+
+    // Jogi modálok nyitása/zárása
+    const openers = document.querySelectorAll('nav.legal a[data-open]');
+    openers.forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const key = a.getAttribute('data-open');
+        const dlg = document.getElementById('dlg-' + key);
+        if(dlg && typeof dlg.showModal === 'function') dlg.showModal();
+      });
+    });
+    document.querySelectorAll('dialog.modal [data-close]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ const dlg = btn.closest('dialog'); if(dlg) dlg.close(); });
+    });
+    document.querySelectorAll('dialog.modal').forEach(dlg=>{
+      dlg.addEventListener('click', (e)=>{ if(e.target === dlg) dlg.close(); });
     });
 
     // Év frissítése láblécben
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Form beküldés – maradjon az oldalon, köszönő üzenettel (AJAX)
+    // Formspree – maradjon az oldalon, köszönő üzenettel (AJAX)
     (function(){
       const form = document.getElementById('contact-form');
       if(!form) return;
@@ -495,63 +608,16 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
         e.preventDefault();
         if(statusEl) statusEl.textContent = 'Küldés…';
         try{
-          const res = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-          });
-          if(res.ok){
-            if(statusEl) statusEl.textContent = 'Köszönöm! Üzeneted megérkezett, hamarosan válaszolok.';
-            form.reset();
-          }else{
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+          if(res.ok){ if(statusEl) statusEl.textContent = 'Köszönöm! Üzeneted megérkezett, hamarosan válaszolok.'; form.reset(); }
+          else{
             let msg = 'Hoppá, hiba történt. Kérlek próbáld újra.';
-            try{ const data = await res.json(); if(data && data.errors){ msg = data.errors.map(x=>x.message).join(', '); } }catch(_){}
+            try{ const data = await res.json(); if(data && data.errors){ msg = data.errors.map(x=>x.message).join(', '); } }catch(_){ }
             if(statusEl) statusEl.textContent = msg;
           }
         }catch(err){ if(statusEl) statusEl.textContent = 'Hálózati hiba. Kérlek próbáld meg később.'; }
       });
     })();
-  </script>
-
-  <!-- Struktúrált adatok (SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Imation wedding – Esküvői videó",
-    "description": "Esküvői videózás 4K minőségben, drónnal és kreatív történetmeséléssel.",
-    "thumbnailUrl": ["https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800&auto=format&fit=crop"],
-    "uploadDate": "2025-01-01",
-    "publisher": {"@type": "Organization", "name": "Imation wedding"}
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Mikor kapjuk meg a kész videókat?",
-        "acceptedAnswer": {"@type": "Answer", "text": "A vágási időszak általában 6–10 hét. Az Exkluzív csomagban gyorsított átadás érhető el (pl. 4 hét), valamint 1 héten belüli teaser videó."}
-      },
-      {
-        "@type": "Question",
-        "name": "Dolgoztok-e ketten a nagy napon?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Az alap csomagban egy fő operatőri jelenlét szerepel, a nagyobb eseményekhez kérhető másodoperatőr is."}
-      },
-      {
-        "@type": "Question",
-        "name": "Hogyan adjátok át a videókat?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Felhőtárhelyen, letölthető formában. Kérésre pendrive/díszdoboz is elérhető (Exkluzív csomag opció)."}
-      },
-      {
-        "@type": "Question",
-        "name": "Van-e rejtett költség?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Nincs. Vidéki/külföldi helyszín esetén az utazás és szállás költsége külön egyeztetés tárgya."}
-      }
-    ]
-  }
   </script>
 </body>
 </html>
