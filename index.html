@@ -18,9 +18,10 @@
   <meta name="twitter:description" content="Esküvői filmek elegáns, filmszerű megjelenéssel." />
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop" />
   <!-- Favicon (inline SVG) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23caa43b'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-family='Georgia,serif' font-size='30' fill='%234a3b0f'%3EIW%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" href="./logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="./portrait.jpg" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -65,7 +66,7 @@
     }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 64px; }
     .brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; letter-spacing: .3px; }
-    .brand .logo { width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #f2e6b6, #caa43b 60%, #8a6d1f); box-shadow: inset 0 0 0 2px rgba(255,255,255,.25); }
+    .brand .logo-img{ height:48px; width:48px; display:block; border-radius:50%; object-fit:contain; background: transparent; }
     .brand span { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }
 
     .menu { display: flex; gap: 1.2rem; align-items: center; }
@@ -198,6 +199,7 @@
   <nav class="nav" aria-label="Fő navigáció">
     <div class="container nav-inner">
       <a href="#hero" class="brand" aria-label="Imation wedding kezdőlap">
+        <img src="./logo.png" alt="Imation Wedding logó" class="logo-img" />
         <span>Imation wedding</span>
       </a>
       <button class="hamb" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false" onclick="toggleMenu()">
@@ -264,7 +266,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
           <hr class="sep" style="border:none;border-top:1px solid var(--line);margin:1rem 0;" />
           <div class="profile column" aria-label="Profilkép és aláírás">
             <div class="avatar-wrap">
-              <img src="assets/patrovics-gabor.jpg" alt="Pátrovics Gábor portré" id="avatar-fixed" />
+              <img src="./portrait.jpg" alt="Pátrovics Gábor portré" id="avatar-fixed" />
             </div>
             <div class="signature">Pátrovics Gábor</div>
           </div>
@@ -344,7 +346,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
         <!-- Exkluzív csomag -->
         <article class="price-card reveal" aria-labelledby="exkluziv">
           <div class="header">
-            <h3 id="exkluziv">2. Exkluzív csomag</h3>
+            <h3 id="exkluziv">2. Prémium csomag</h3>
             
           </div>
           <p>Az igazi teljes élmény, ahol minden részletre figyelünk, és a videózás igazi kreatív élménnyé válik.</p>
@@ -491,7 +493,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
       </header>
       <div class="content">
         <p><em>Verzió/dátum: [2025.10.01]</em></p>
-        <ol>
+       <ol>
           <li><strong>Szolgáltató adatai</strong><br/>
             Név: Pátrovics Gábor · Székhely/levelezés: 2440 Százhalombatta, Erkel Ferenc krt 30. 4/3 · Nyilvántartási/cégjegyzékszám: 61085673 · Adószám: 91411282133 · E-mail: <a href="mailto:hello@imationwedding.hu">hello@imationwedding.hu</a> · Telefon: <a href="tel:+36305692695">+36 30 569 2695</a> · Tárhely: <a href="https://www.rackhost.hu/" target="_blank" rel="noopener">https://www.rackhost.hu/</a>
           </li>
@@ -499,7 +501,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
             Esküvői fotó és/vagy videó szolgáltatások. Ajánlat: e-mailben küldött részletes szolgáltatás- és díjleírás. Szerződés: az Ajánlat és jelen ÁSZF kifejezett e-mailes elfogadásával jön létre.
           </li>
           <li><strong>Szerződéskötés</strong><br/>
-            Elfogadás minta: „Elfogadom az ajánlatot és a [YYYY.MM.DD] dátumú ÁSZF-et.” A Szolgáltató e-mailben visszaigazol.
+            Elfogadás minta: „Elfogadom az ajánlatot és a [2025.10.01] dátumú ÁSZF-et.” A Szolgáltató e-mailben visszaigazol.
           </li>
           <li><strong>Teljesítés, rendelkezésre állás, átadás</strong><br/>
             Rendelkezésre állás: 10:00–01:00 (köv. nap). A csomag tartalma az Ajánlatban. Átadás: felhőlink/USB, link érvényesség: 12 hónap. Drón a csomag része, ha a helyszín/időjárás és jogszabály engedi. A szolgáltatás teljesítésére kötelez a szerződés; a Szolgáltató garantálja, hogy az adott időpontban szerződésszerűen teljesít.
