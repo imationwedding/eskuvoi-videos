@@ -21,11 +21,11 @@
   <link rel="icon" type="image/png" href="./logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="./portrait.jpg" as="image">
+  <link rel="preload" href="./portrait.png" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fffdf8;           /* meleg, elegáns háttér */
+      --bg: #fffdf8;
       --paper: #ffffff;        /* kártyák */
       --ink: #1f2937;          /* fő szöveg */
       --muted: #6b7280;        /* kiegészítő szöveg */
@@ -192,6 +192,25 @@
     .modal .content { padding:1rem 1.1rem; max-height:70vh; overflow:auto; }
     .modal .actions { padding: .8rem 1.1rem; border-top:1px solid var(--line); display:flex; justify-content:flex-end; }
     .modal .close { border:1px solid var(--line); background:var(--paper); border-radius:12px; padding:.5rem .8rem; font-weight:600; }
+    /* Hero teaser – prémium keret + árnyék */
+    .frame.video{ position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--line); background:#fff; aspect-ratio:16/9; max-width:1280px; box-shadow: 0 22px 60px rgba(17,24,39,.22), 0 8px 24px rgba(17,24,39,.10); }
+    .frame.video::after{ content: none; }
+    .frame.video::before{ content: none; }
+    .frame.video video{ width:100%; height:100%; display:block; object-fit:cover; }
+    .vbtn{ position:absolute; right:12px; bottom:12px; width:46px; height:46px; display:grid; place-items:center; border-radius:999px; border:1px solid rgba(255,255,255,.55); background: transparent; color:#ffffff; box-shadow: none; backdrop-filter: none; cursor:pointer; transition: transform .2s ease, background-color .2s ease, border-color .2s ease; }
+    .vbtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.7); }
+    /* Portfólió – videókhoz */
+    .video-grid{ display:grid; gap:1.2rem; grid-template-columns: repeat(2, minmax(0,1fr)); align-items:start; }
+    .video-card h3{ margin:.25rem 0 .6rem; }
+    .video-card .frame.video{ aspect-ratio:16/9; background:#000; max-width:100%; }
+    .video-card iframe.yt{ width:100%; height:100%; border:0; display:block; }
+    @media (max-width: 900px){ .video-grid{ grid-template-columns: 1fr; } }
+    /* YouTube – egyedi borítókép + kattintásra lejátszás */
+    .yt-lite{ position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; display:block; cursor:pointer; border-radius:14px; }
+    .yt-lite img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .yt-lite .yt-play{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:64px; height:64px; border-radius:999px; border:1px solid var(--line); background: rgba(255,255,255,.9); display:grid; place-items:center; box-shadow: var(--shadow); }
+    .yt-lite .yt-play svg{ width:28px; height:28px; }
+    .yt-lite:hover .yt-play{ transform:translate(-50%,-50%) scale(1.03); box-shadow: 0 12px 26px rgba(17,24,39,.14); }
   </style>
 </head>
 <body>
@@ -230,9 +249,11 @@
         </div>
       </div>
       <div class="hero-media reveal" aria-hidden="true">
-        <div class="frame">
-          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" alt="Esküvői pár naplementében, filmkocka hangulat" loading="lazy" />
+        <div class="frame video">
+          <video id="teaserVideo" src="./teaser.mp4" autoplay muted playsinline loop preload="metadata" poster="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" aria-label="Imation wedding 1 perces teaser videó"></video>
+          <button id="muteBtn" class="vbtn" aria-pressed="true" aria-label="Hang be" title="Hang be"></button>
         </div>
+      </div>
       </div>
     </div>
   </header>
@@ -266,7 +287,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
           <hr class="sep" style="border:none;border-top:1px solid var(--line);margin:1rem 0;" />
           <div class="profile column" aria-label="Profilkép és aláírás">
             <div class="avatar-wrap">
-              <img src="./portrait.jpg" alt="Pátrovics Gábor portré" id="avatar-fixed" />
+              <img src="./portrait.png" alt="Pátrovics Gábor portré" id="avatar-fixed" />
             </div>
             <div class="signature">Pátrovics Gábor</div>
           </div>
@@ -280,26 +301,37 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
     <div class="container">
       <div class="reveal">
         <h2>Portfólió</h2>
-        <p class="lead">Válogatás korábbi munkáimból. A képek illusztrációk – kérésre privát linkeken teljes filmeket is küldök.</p>
+        <p class="lead">Tekintsd meg az eddig elkészült munkáimat</p>
       </div>
-      <div class="grid" aria-label="Portfólió galéria">
-        <a class="item col-8 reveal" href="#" aria-label="Highlight film példa">
-          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1600&auto=format&fit=crop" alt="Kreatív páros fotózás" loading="lazy" />
-          <span class="play">Nézd meg</span>
-        </a>
-        <a class="item col-4 reveal" href="#">
-          <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1200&auto=format&fit=crop" alt="Gyűrűk és részletek" loading="lazy" />
-          <span class="play">Részletek</span>
-        </a>
-        <a class="item col-6 reveal" href="#">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop" alt="Szertartás pillanata" loading="lazy" />
-          <span class="play">Szertartás</span>
-        </a>
-        <a class="item col-6 reveal" href="#">
-          <img src="https://images.unsplash.com/photo-1528838068211-87a5645693ec?q=80&w=1600&auto=format&fit=crop" alt="Nyitótánc és buli" loading="lazy" />
-          <span class="play">Nyitótánc</span>
-        </a>
+
+      <div class="video-grid">
+        <!-- Videó #1 -->
+        <article class="video-card reveal">
+          <h3>Brigi & Peti</h3>
+          <div class="frame video">
+            <div class="yt-lite" data-id="https://www.youtube.com/watch?v=gKecO96tqos" data-title="Teljes esküvői film #1">
+              <img src="./cover1.jpg" alt="Teljes film #1 – borítókép" loading="lazy"/>
+              <span class="yt-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Videó #2 -->
+        <article class="video-card reveal">
+          <h3>Eni & Lali</h3>
+          <div class="frame video">
+            <div class="yt-lite" data-id="https://www.youtube.com/watch?v=S3dhlrCI650" data-title="Teljes esküvői film #2">
+              <img src="./cover2.jpg" alt="Teljes film #2 – borítókép" loading="lazy"/>
+              <span class="yt-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </div>
+          </div>
+        </article>
       </div>
+    
     </div>
   </section>
 
@@ -419,8 +451,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
       <div class="reveal" style="max-width:900px; margin-inline:auto;">
         <h2>GYIK</h2>
         <p class="lead">Gyakran ismételt kérdések – a legfontosabb tudnivalók röviden.</p>
-
-        <details>
+          <details>
           <summary>Milyen az általános rendelkezésre állás?</summary>
           <p>Alapesetben 10:00–01:00 (következő nap) között dolgozom. Ettől eltérő igény egyedi megállapodással.</p>
         </details>
@@ -493,7 +524,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
       </header>
       <div class="content">
         <p><em>Verzió/dátum: [2025.10.01]</em></p>
-       <ol>
+        <ol>
           <li><strong>Szolgáltató adatai</strong><br/>
             Név: Pátrovics Gábor · Székhely/levelezés: 2440 Százhalombatta, Erkel Ferenc krt 30. 4/3 · Nyilvántartási/cégjegyzékszám: 61085673 · Adószám: 91411282133 · E-mail: <a href="mailto:hello@imationwedding.hu">hello@imationwedding.hu</a> · Telefon: <a href="tel:+36305692695">+36 30 569 2695</a> · Tárhely: <a href="https://www.rackhost.hu/" target="_blank" rel="noopener">https://www.rackhost.hu/</a>
           </li>
@@ -601,6 +632,42 @@ A kész anyag átvételétől számított 1 hónapon belül egyszeri díjmentes 
     // Év frissítése láblécben
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // YouTube – egyedi borítóról kattintásra iframe betöltés (URL-ből vagy ID-ből)
+    (function(){
+      function getYtId(input){
+        if(!input) return '';
+        const s = String(input).trim();
+        if(/youtu\.be\//.test(s) || /youtube\.com\//.test(s)){
+          const m = s.match(/(?:v=|embed\/|shorts\/|youtu\.be\/)([0-9A-Za-z_-]{11})/);
+          if(m && m[1]) return m[1];
+        }
+        const m2 = s.match(/^[0-9A-Za-z_-]{11}$/);
+        return m2 ? m2[0] : '';
+      }
+      function play(el){
+        const raw = el.getAttribute('data-id');
+        const id = getYtId(raw);
+        const title = el.getAttribute('data-title') || 'YouTube videó';
+        if(!id) return;
+        const src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white`;
+        const ifr = document.createElement('iframe');
+        ifr.className = 'yt';
+        ifr.src = src;
+        ifr.title = title;
+        ifr.loading = 'lazy';
+        ifr.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        ifr.setAttribute('allowfullscreen','');
+        el.replaceWith(ifr);
+      }
+      document.querySelectorAll('.yt-lite').forEach(el=>{
+        el.addEventListener('click', ()=> play(el));
+        el.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); play(el); } });
+        el.setAttribute('tabindex','0');
+        el.setAttribute('role','button');
+        el.setAttribute('aria-label','Lejátszás');
+      });
+    })();
+
     // Formspree – maradjon az oldalon, köszönő üzenettel (AJAX)
     (function(){
       const form = document.getElementById('contact-form');
@@ -618,7 +685,26 @@ A kész anyag átvételétől számított 1 hónapon belül egyszeri díjmentes 
             if(statusEl) statusEl.textContent = msg;
           }
         }catch(err){ if(statusEl) statusEl.textContent = 'Hálózati hiba. Kérlek próbáld meg később.'; }
-      });
+          });
+    })();
+
+    // Hero teaser – némítás ikon gomb
+    (function(){
+      const v = document.getElementById('teaserVideo');
+      const btn = document.getElementById('muteBtn');
+      if(!v || !btn) return;
+      const icoOn = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5l-4 4H4v6h3l4 4V5z"/><path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/></svg>';
+      const icoOff = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5l-4 4H4v6h3l4 4V5z"/><path d="M23 1L1 23"/></svg>';
+      function render(){
+        btn.innerHTML = v.muted ? icoOff : icoOn;
+        btn.setAttribute('aria-label', v.muted ? 'Hang be' : 'Némítás');
+        btn.setAttribute('aria-pressed', String(!v.muted));
+        btn.title = v.muted ? 'Hang be' : 'Némítás';
+      }
+      render();
+      btn.addEventListener('click', ()=>{ v.muted = !v.muted; render(); if(v.paused) v.play().catch(()=>{}); });
+      v.play().catch(()=>{ v.muted = true; render(); v.play().catch(()=>{}); });
+      document.addEventListener('visibilitychange', ()=>{ if(document.hidden) v.pause(); else v.play().catch(()=>{}); });
     })();
       // Megrendelem: sablon szöveg az üzenet mezőbe
     document.querySelectorAll('.order-btn').forEach(btn=>{
