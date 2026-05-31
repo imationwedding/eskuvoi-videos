@@ -58,13 +58,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
 
     /* Alapok */
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--ink);
       background: var(--bg);
       line-height: 1.65;
+      overflow-x: hidden;
     }
     h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; line-height: 1.2; }
     h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0; }
@@ -80,25 +81,78 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* Navigáció */
     .nav {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(255, 253, 248, .75);
-      backdrop-filter: blur(8px);
+      background: rgba(255, 253, 248, .88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
+      transition: box-shadow .35s ease;
     }
+    .nav.scrolled { box-shadow: 0 4px 28px rgba(17,24,39,.08); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 64px; }
-    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; letter-spacing: .3px; }
+    .brand { display: flex; align-items: center; gap: .6rem; font-weight: 600; letter-spacing: .3px; transition: opacity .2s ease; }
+    .brand:hover { opacity: .75; }
     .brand .logo-img{ height:48px; width:48px; display:block; border-radius:50%; object-fit:contain; background: transparent; }
     .brand span { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }
 
-    .menu { display: flex; gap: 1.2rem; align-items: center; }
-    .menu a { padding: .4rem .6rem; border-radius: 10px; font-weight: 500; color: var(--muted); }
-    .menu a:hover, .menu a.active { color: var(--ink); background: var(--gold-soft); }
+    .menu { display: flex; gap: .1rem; align-items: center; }
+    .menu a {
+      position: relative;
+      padding: .45rem .75rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: .02em;
+      transition: color .22s ease;
+    }
+    .menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      right: 50%;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: left .28s cubic-bezier(.4,0,.2,1), right .28s cubic-bezier(.4,0,.2,1);
+    }
+    .menu a:hover { color: var(--ink); background: transparent; }
+    .menu a:hover::after { left: 12%; right: 12%; }
+    .menu a.active { color: var(--ink); background: transparent; }
+    .menu a.active::after { left: 12%; right: 12%; }
 
-    .hamb { display: none; border: 1px solid var(--line); background: var(--paper); padding: .5rem .7rem; border-radius: 12px; }
+    .hamb {
+      display: none;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: .5rem .7rem;
+      border-radius: 12px;
+      transition: background .2s ease, border-color .2s ease, transform .15s ease;
+    }
+    .hamb:hover { background: var(--gold-soft); border-color: var(--gold); transform: scale(1.04); }
     .hamb svg { width: 22px; height: 22px; }
 
     @media (max-width: 900px) {
-      .menu { position: fixed; inset: 64px 0 auto 0; height: 0; overflow: hidden; flex-direction: column; align-items: stretch; background: rgba(255,253,248,.97); border-bottom: 1px solid var(--line); transition: height .3s ease; }
-      .menu.open { height: 260px; padding: .75rem 1rem; }
+      .menu {
+        position: fixed; inset: 64px 0 auto 0; height: 0; overflow: hidden;
+        flex-direction: column; align-items: stretch;
+        background: rgba(255,253,248,.97);
+        border-bottom: 1px solid var(--line);
+        transition: height .32s cubic-bezier(.4,0,.2,1);
+        gap: 0; padding: 0;
+      }
+      .menu.open { height: 290px; padding: .5rem .75rem; }
+      .menu a {
+        padding: .75rem .65rem;
+        border-radius: 10px;
+        border-left: 3px solid transparent;
+        transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+      }
+      .menu a::after { display: none; }
+      .menu a:hover, .menu a.active {
+        color: var(--ink);
+        background: var(--gold-soft);
+        border-color: var(--gold);
+        transform: translateX(4px);
+      }
       .hamb { display: inline-flex; }
     }
 
@@ -121,12 +175,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
 
     /* Rólam */
-    .about { display: grid; gap: 2rem; grid-template-columns: .9fr 1.1fr; align-items: center; }
-    .about .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem; box-shadow: var(--shadow); }
-    .about .list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .badge { display:inline-flex; align-items:center; gap:.4rem; padding:.45rem .7rem; border:1px solid var(--line); border-radius:999px; background:var(--paper); font-weight:600; font-size:.9rem; }
     .badge .sparkle { width:16px; height:16px; }
-    @media (max-width: 900px) { .about { grid-template-columns: 1fr; } .about .list{grid-template-columns:1fr;} }
+
+    .about-new { display:grid; grid-template-columns:2fr 3fr; gap:clamp(2rem,4vw,4.5rem); align-items:center; }
+    .about-portrait-col { max-width:340px; margin-inline:auto; }
+
+    /* Portrait column */
+    .about-portrait-frame {
+      position:relative;
+      border-radius:20px;
+      overflow:hidden;
+      aspect-ratio:3/4;
+      box-shadow:0 24px 64px rgba(17,24,39,.18), 0 6px 20px rgba(17,24,39,.08);
+      border:1px solid rgba(201,162,39,.35);
+    }
+    .about-portrait-frame img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 8%;
+      border-radius:0;
+      display:block;
+    }
+    .portrait-below-name {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:.85rem 0 0;
+    }
+    .portrait-signature {
+      font-family:"Alex Brush", cursive;
+      font-size:2.6rem;
+      line-height:1;
+      color:var(--ink);
+      letter-spacing:.2px;
+    }
+    .portrait-gold-line {
+      width:44px;
+      height:2px;
+      background:var(--gold);
+      border-radius:2px;
+      margin-bottom:.45rem;
+      opacity:.85;
+    }
+
+    /* Content column */
+    .about-content-col { display:flex; flex-direction:column; gap:1.5rem; }
+    .about-feature-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .about-feature-item {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:1rem 1.1rem;
+      box-shadow:var(--shadow);
+    }
+    .about-feature-item h3 { margin-top:0; margin-bottom:.3rem; }
+
+    @media (max-width: 900px) {
+      .about-new { grid-template-columns:1fr; }
+      .about-portrait-col { order:2; text-align:center; }
+      .about-content-col { order:1; }
+      .about-portrait-frame { aspect-ratio:4/5; }
+      .about-feature-grid { grid-template-columns:1fr; }
+    }
 
     /* Portfólió */
     .grid { display: grid; gap: 1rem; grid-template-columns: repeat(12, 1fr); }
@@ -191,17 +303,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       html{ scroll-behavior: auto; }
     }
   .discount { color: var(--muted); font-size: .95rem; font-style: italic; }
-  /* Profilkép & aláírás */
-    .profile-card h3{margin-top:0;}
-    .profile{display:flex; align-items:center; gap:1rem; flex-wrap:wrap;}
-    .avatar-wrap{width:140px; height:140px; border-radius:50%; overflow:hidden; border:1px solid var(--line); background:#f6f6f6; display:grid; place-items:center;}
-    #avatar-preview{width:100%; height:100%; object-fit:cover; display:none;}
-    .avatar-ph{display:grid; place-items:center; width:100%; height:100%;}
-    .avatar-ph svg{width:48px; height:48px; color:#9ca3af;}
-    .signature{font-family:"Alex Brush", cursive; font-size:2.4rem; line-height:1; margin-top:.25rem; letter-spacing:.2px;}
-    .profile-controls .btn{margin-right:.5rem;}
-    @media (max-width: 480px){ .avatar-wrap{width:120px; height:120px;} .signature{font-size:2rem;} }
-  .profile.column{flex-direction:column; align-items:center;}
   /* Jogi blokk (lábléc) */
     .legal { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
     .legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
@@ -231,6 +332,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .yt-lite .yt-play{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:64px; height:64px; border-radius:999px; border:1px solid var(--line); background: rgba(255,255,255,.9); display:grid; place-items:center; box-shadow: var(--shadow); }
     .yt-lite .yt-play svg{ width:28px; height:28px; }
     .yt-lite:hover .yt-play{ transform:translate(-50%,-50%) scale(1.03); box-shadow: 0 12px 26px rgba(17,24,39,.14); }
+    /* Video betöltő overlay */
+    .vlo {
+      position:absolute; inset:0; z-index:5;
+      background: radial-gradient(ellipse at 50% 60%, #1c1206 0%, #0a0602 100%);
+      display:flex; align-items:center; justify-content:center;
+      transition: opacity 1s ease;
+    }
+    .vlo.fade-out { opacity:0; pointer-events:none; }
+
+    .vlo-center {
+      display:flex; flex-direction:column; align-items:center; gap:1.4rem;
+      position:relative;
+    }
+
+    /* Pulzáló gyűrűk */
+    .vlo-rings {
+      position:relative; width:80px; height:80px;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .vlo-ring {
+      position:absolute; border-radius:50%;
+      border:1.5px solid rgba(201,162,39,.65);
+      animation: vlo-ripple 2.4s ease-out infinite;
+    }
+    .vlo-ring:nth-child(1) { width:32px; height:32px; animation-delay:0s; }
+    .vlo-ring:nth-child(2) { width:32px; height:32px; animation-delay:.8s; }
+    .vlo-ring:nth-child(3) { width:32px; height:32px; animation-delay:1.6s; }
+    @keyframes vlo-ripple {
+      0%   { transform:scale(1);   opacity:.75; }
+      100% { transform:scale(3.2); opacity:0; }
+    }
+    .vlo-dot {
+      width:10px; height:10px; border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 14px 3px rgba(201,162,39,.55);
+      position:relative; z-index:1;
+    }
+
+    /* Brand szöveg */
+    .vlo-name {
+      font-family:"Alex Brush", cursive;
+      font-size:clamp(2rem,4vw,2.8rem);
+      color:#e8d0a0;
+      letter-spacing:.3px;
+      line-height:1;
+    }
+
+    /* Animált arany csík */
+    .vlo-bar {
+      width:100px; height:1px;
+      background:rgba(201,162,39,.15);
+      border-radius:1px; overflow:hidden;
+    }
+    .vlo-bar-fill {
+      height:100%; width:40%;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: vlo-slide 1.8s ease-in-out infinite;
+    }
+    @keyframes vlo-slide {
+      0%   { transform:translateX(-150%); }
+      100% { transform:translateX(350%); }
+    }
   </style>
 </head>
 <body>
@@ -274,7 +437,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="hero-media reveal" aria-hidden="true">
         <div class="frame video">
-          <video id="teaserVideo" src="./teaser.mp4" autoplay muted playsinline loop preload="metadata" poster="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop" aria-label="Imation wedding 1 perces teaser videó"></video>
+          <div id="videoLoadOverlay" class="vlo">
+            <div class="vlo-center">
+              <div class="vlo-rings">
+                <div class="vlo-ring"></div>
+                <div class="vlo-ring"></div>
+                <div class="vlo-ring"></div>
+                <div class="vlo-dot"></div>
+              </div>
+              <div class="vlo-name">Imation wedding</div>
+              <div class="vlo-bar"><div class="vlo-bar-fill"></div></div>
+            </div>
+          </div>
+          <video id="teaserVideo" src="./teaser.mp4" autoplay muted playsinline loop preload="auto" aria-label="Imation wedding 1 perces teaser videó"></video>
           <button id="muteBtn" class="vbtn" aria-pressed="true" aria-label="Hang be" title="Hang be"></button>
         </div>
       </div>
@@ -284,38 +459,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Rólam -->
   <section id="rolam" class="section">
-    <div class="container about">
-      <div class="reveal">
-        <h2>Rólam</h2>
-        <p>Néhány évvel ezelőtt kaptam az első felkérésemet egy esküvőre – és azóta tudom, hogy számomra ez sokkal több, mint munka. Fantasztikus érzés látni és megörökít az őszinte pillanatokat: egy mosolyt, egy meghatódott tekintetet, egy önfeledt nevetést. Ezek azok a részletek, amik igazán felejthetetlenné tesznek egy napot.
+    <div class="container">
+      <div class="about-new">
+
+        <!-- Portré oszlop -->
+        <div class="about-portrait-col reveal">
+          <div class="about-portrait-frame">
+            <img src="./portrait.jpg" alt="Pátrovics Gábor portré" />
+          </div>
+          <div class="portrait-below-name">
+            <div class="portrait-gold-line"></div>
+            <div class="portrait-signature">Pátrovics Gábor</div>
+          </div>
+        </div>
+
+        <!-- Tartalom oszlop -->
+        <div class="about-content-col reveal">
+          <div>
+            <h2>Rólam</h2>
+            <p>Néhány évvel ezelőtt kaptam az első felkérésemet egy esküvőre – és azóta tudom, hogy számomra ez sokkal több, mint munka. Fantasztikus érzés látni és megörökít az őszinte pillanatokat: egy mosolyt, egy meghatódott tekintetet, egy önfeledt nevetést. Ezek azok a részletek, amik igazán felejthetetlenné tesznek egy napot.
 
 Az esküvői film számomra nem csak dokumentáció, hanem történetmesélés: a ti történeteteké. Ezért mindig arra törekszem, hogy ne csak gyönyörű felvételek készüljenek, hanem olyan film, amit évek múlva is ugyanazzal az örömmel és meghatottsággal néztek vissza.
 
 Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor és a jókedv felszabadít, és segít abban, hogy a kamera előtt is önmagatok lehessetek. Bízom benne, hogy hamar megtaláljuk a közös hangot, és együtt valami igazán különlegeset hozunk létre!</p>
-        <div class="badge" aria-label="Prémium minőség jelvény">
-          <svg class="sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.8L19 9.6l-4.2 2.1L12 17l-2.8-5.3L5 9.6l5.2-1.8L12 3z"/></svg>
-          Cinematográfia &amp; történetmesélés
-        </div>
-      </div>
-      <div class="card reveal">
-        <div class="list">
-            <div>
+            <div class="badge" aria-label="Prémium minőség jelvény">
+              <svg class="sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.8L19 9.6l-4.2 2.1L12 17l-2.8-5.3L5 9.6l5.2-1.8L12 3z"/></svg>
+              Cinematográfia &amp; történetmesélés
+            </div>
+          </div>
+
+          <div class="about-feature-grid">
+            <div class="about-feature-item">
               <h3>Stílus</h3>
               <p>Természetes színek, filmszerű vágás, cinematográfia. A cél: ti legyetek a történet főszereplői.</p>
             </div>
-            <div>
+            <div class="about-feature-item">
               <h3>Technika</h3>
               <p>4K kamera-rendszer, drón, mikroportok – stabil, tiszta kép és hang, minden körülmények között.</p>
             </div>
           </div>
-          <hr class="sep" style="border:none;border-top:1px solid var(--line);margin:1rem 0;" />
-          <div class="profile column" aria-label="Profilkép és aláírás">
-            <div class="avatar-wrap">
-              <img src="./portrait.jpg" alt="Pátrovics Gábor portré" id="avatar-fixed" />
-            </div>
-            <div class="signature">Pátrovics Gábor</div>
-          </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -381,7 +565,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
               Egész napos rendelkezésre állás (hajnal 1-ig)
             </li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 5–10 perces Highlight film</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 5–7 perces Highlight film</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Szertartás és nyitótánc felvétele 2 kamerával</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> 4K videófelvétel</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Drónos felvételek a látványos pillanatokért</li>
@@ -391,9 +575,7 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Biztonsági mentés 12 hónapig</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Budapesten belül ingyenes kiszállás</li>
           </ul>
-          <p class="price" aria-label="Ár"><span class="old" aria-label="Eredeti ár">199.990 Ft</span> <span class="now" aria-label="Akciós ár">149.990 Ft</span></p>
-<p class="discount">Bevezető ár 2025-ben – portfólióépítő időszak miatt kiemelt kedvezménnyel.</p>
-          <div class="who">Kinek ajánljuk? Ha szeretnétek profi, látványos videót az egész napról, gyors átadással és minden fontos pillanat megörökítésével.</div>
+          <p class="price" aria-label="Ár"><span class="now" aria-label="Ár">299.990 Ft</span></p>
           <div class="cta-row" style="margin-top:1rem; margin-bottom:.25rem;">
             <a class="btn primary order-btn" href="#kapcsolat" data-pkg="Klasszikus csomag" aria-label="Klasszikus csomag megrendelése">Megrendelem</a>
           </div>
@@ -409,14 +591,13 @@ Fontosnak tartom, hogy a közös munka jó hangulatban teljen, hiszen a humor é
           <h4>Tartalom:</h4>
           <ul class="features" aria-label="Exkluzív csomag tartalma">
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> A Klasszikus csomag minden szolgáltatása</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hosszabb, dokumentációs film (20–25 perc) a Highlight film mellett</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Hosszabb, dokumentációs film (20–30 perc) a Highlight film mellett</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Extra vágások, vendéginterjúk és egyedi részletek beépítése</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Gyorsított videóátadás (2-4 hét)</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Elegáns pendrive/díszdobozos átadás</li>
           </ul>
           <div class="who">Kinek ajánljuk? Ha szeretnétek minden pillanatot látványosan és személyre szabottan megörökít, extra hosszú dokumentációval, vendégüzenetekkel és exkluzív átadási formával.</div>
-          <p class="price" aria-label="Ár"><span class="old" aria-label="Eredeti ár">269.990 Ft</span> <span class="now" aria-label="Akciós ár">209.990 Ft</span></p>
-<p class="discount">Bevezető ár 2025-ben – portfólióépítő időszak miatt kiemelt kedvezménnyel.</p>
+          <p class="price" aria-label="Ár"><span class="now" aria-label="Ár">359.990 Ft</span></p>
           <div class="cta-row" style="margin-top:.5rem;">
             <a class="btn primary order-btn" href="#kapcsolat" data-pkg="Exkluzív csomag" aria-label="Exkluzív csomag megrendelése">Megrendelem</a>
           </div>
@@ -632,9 +813,13 @@ A kész anyag átvételétől számított 1 hónapon belül egyszeri díjmentes 
     }, { threshold: 0.15 });
     reveals.forEach(el=> revObs.observe(el));
 
-    // Vissza a tetejére gomb
+    // Vissza a tetejére gomb + nav scroll árnyék
     const topBtn = document.querySelector('.top');
-    window.addEventListener('scroll', ()=>{ topBtn.classList.toggle('show', window.scrollY > 600); });
+    const navEl = document.querySelector('.nav');
+    window.addEventListener('scroll', ()=>{
+      topBtn.classList.toggle('show', window.scrollY > 600);
+      navEl.classList.toggle('scrolled', window.scrollY > 10);
+    });
 
     // Jogi modálok nyitása/zárása
     const openers = document.querySelectorAll('nav.legal a[data-open]');
@@ -710,6 +895,20 @@ A kész anyag átvételétől számított 1 hónapon belül egyszeri díjmentes 
           }
         }catch(err){ if(statusEl) statusEl.textContent = 'Hálózati hiba. Kérlek próbáld meg később.'; }
           });
+    })();
+
+    // Video töltőképernyő – fade out amikor lejátszható
+    (function(){
+      const overlay = document.getElementById('videoLoadOverlay');
+      const v = document.getElementById('teaserVideo');
+      if(!overlay || !v) return;
+      function hideOverlay(){
+        overlay.classList.add('fade-out');
+        setTimeout(()=>{ overlay.style.display='none'; }, 1000);
+      }
+      if(v.readyState >= 3){ hideOverlay(); return; }
+      v.addEventListener('canplay', hideOverlay, { once:true });
+      setTimeout(hideOverlay, 9000); // fallback: max 9mp várakozás
     })();
 
     // Hero teaser – némítás ikon gomb
